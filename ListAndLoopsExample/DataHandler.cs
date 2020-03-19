@@ -11,56 +11,121 @@ namespace ListAndLoopsExample
         public List<Person> persons = new List<Person>();
         public List<Company> companies = new List<Company>();
 
-        
+        public void FillPersonsWithTestData()
+        {
+            this.persons.Add(new Person("Teppo", "Testipersoona", "050-888 4444", "teppo@testaus.fi"));
+            this.persons.Add(new Person("Tapio", "Tapaustesti", "030-448 2244", "tapsa@testaus.fi"));
+        }
+
+        public void FillCompaniesWithTestData()
+        {
+            Person kontakti = new Person("Teppo", "Testipersoona", "050-888 4444", "teppo@testaus.fi");
+            Company testCompany = new Company("testiyritys-1", kontakti, "Finland");
+            this.companies.Add(testCompany);
+        }
+            
 
         public Coffee CreateCoffee()
         {
             Console.WriteLine("Syötä kahvin merkki.");
             var merkki = Console.ReadLine();
             Console.WriteLine("Syötä kahvin hinta.");
-            double hinta = Console.Read();
+            double hinta = Convert.ToDouble(Console.ReadLine());
             Console.WriteLine("Syötä kahvin paahtoaste 1-5.");
-            int paahtoaste = int.Parse(Console.ReadLine());
+            string paahto = Console.ReadLine();
+            int paahtoaste = int.Parse(paahto);
             var roast = (Coffee.Roast)paahtoaste;
-            Coffee toReturn = new Coffee(merkki, hinta, roast);
+            Coffee toReturn = new Coffee(merkki, hinta);
             return toReturn;
+           
 
         }
         
        public Person CreatePerson() 
         {
             Console.WriteLine("Syötä yhteyshenkilön etunimi.");
-            var etunimi = Console.ReadLine();
+            string firstName = Console.ReadLine();
             Console.WriteLine("Syötä yhteyshenkilön sukunimi.");
-            var sukunimi = Console.ReadLine();
+            var lastName = Console.ReadLine();
             Console.WriteLine("Syötä yhteyshenkilön puhnro.");
-            var puhnro = Console.ReadLine();
+            var phone = Console.ReadLine();
             Console.WriteLine("Syötä yhteyshenkilön email.");
             var email = Console.ReadLine();
 
-            var henkilö1 = new Person("Janne", "Pesonen", "0412221111", "jp@gmail.com");
-            var henkilö2 = new Person("Pekka", "Lehtinen", "0412231111", "pl@gmail.com");
-            var henkilö3 = new Person("Sari", "Seming", "0412224111", "ss@gmail.com");
-            var henkilö4 = new Person("Kiira", "Ingman", "0412225111", "ki@gmail.com");
-
-            persons.Add(henkilö1);
-            persons.Add(henkilö2);
-            persons.Add(henkilö3);
-            persons.Add(henkilö4);
-
-            Person toReturn = new Person(etunimi, sukunimi, puhnro, email);
-            return toReturn;
+            Person person= new Person(firstName, lastName, phone, email);
+            return person;
         }
+
+        public void AddNewPersonToList()
+        {
+            Person person = CreatePerson();
+            this.persons.Add(person);
+            Console.WriteLine("Henkilö Lisätty listaan");
+        }
+
+        public void PrintPersonList()
+        {
+            for (int i = 0; i < this.persons.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {this.persons[i].firstName} {this.persons[i].lastName}");
+            }
+        }
+
+        public Person SelectPersonFromList()
+        {
+            PrintPersonList();
+            Console.WriteLine("Syötä valittavan henkilön numero:");
+            //parse to int
+            var selected = int.Parse(Console.ReadLine());
+            //Get Person object from the list and return it. 
+            //since the list starts with 1 but list index with 0, we need to -1 from selected.
+            return this.persons[selected - 1];
+        }
+
 
         public Company CreateCompany() 
         {
-            Console.WriteLine("Syötä kahvin valmistajan nimi.");
-            var name = Console.ReadLine();
-            Console.WriteLine("Syötä kahvin valmistusmaa.");
-            var country = Console.ReadLine();
+            Console.WriteLine("Anna yrityksen nimi:");
+            string name = Console.ReadLine();
+            Console.WriteLine("Anna yrityksen maa:");
+            string country = Console.ReadLine();
 
-            Company toReturn = new Company(name, country);
-            return toReturn;
+            //later we add possibility to choose from list or add a new person.
+            Console.WriteLine("Valitse yhteyshenkilö listasta");
+            Person contactPerson = SelectPersonFromList();
+
+            Company company = new Company(name, contactPerson, country);
+
+            return company;
+        }
+        public void AddNewCompanyToList()
+        {
+            Company company = CreateCompany();
+            this.companies.Add(company);
+            Console.WriteLine("Yritys lisättiin listaan.");
+        }
+
+        public void PrintCompanyList()
+        {
+            int i = 1;
+            foreach (Company company in this.companies)
+            {
+
+                Console.WriteLine($"{i}.\tNimi:{company.name}");
+                Console.WriteLine($"\tYhteyshenkilö:{company.contactPerson.firstName} {company.contactPerson.lastName}");
+                i++;
+            }
+        }
+
+        public Company SelectCompanyFromList()
+        {
+            PrintCompanyList();
+            Console.WriteLine("Syötä valittavan yrityksen numero:");
+            //parse to int
+            var selected = int.Parse(Console.ReadLine());
+            //Get Person object from the list and return it. 
+            //since the list starts with 1 but list index with 0, we need to -1 from selected.
+            return this.companies[selected - 1];
         }
 
 
