@@ -103,6 +103,12 @@ namespace ListAndLoopsExample
         }
         public void PrintCoffeeList()
         {
+            if (this.coffees.Count == 0)
+            {
+                Console.WriteLine("Kahvi Lista on tyhjä.");
+                return;
+            }
+
             for (int i = 0; i < this.coffees.Count; i++)
             {
                 Console.WriteLine($"{i + 1}. Merkki: {this.coffees[i].brand} | Hinta: {this.coffees[i].price} | Paahtoaste: {this.coffees[i].roast}");
@@ -110,6 +116,12 @@ namespace ListAndLoopsExample
         }
         public void PrintPersonList()
         {
+            if (this.persons.Count == 0)
+            {
+                Console.WriteLine("Yhteyshenkilö Lista on tyhjä.");
+                return;
+            }
+
             for (int i = 0; i < this.persons.Count; i++)
             {
                 Console.WriteLine($"{i + 1}. Etunimi: {this.persons[i].firstName} | Sukunimi: {this.persons[i].lastName} | Puhnro: {this.persons[i].phone} | Email: {this.persons[i].email}");
@@ -185,6 +197,12 @@ namespace ListAndLoopsExample
 
         public void PrintCompanyList()
         {
+            if (this.companies.Count == 0)
+            {
+                Console.WriteLine("Valmistaja Lista on tyhjä.");
+                return;
+            }
+
             int i = 1;
             foreach (Company company in this.companies)
             {
@@ -206,10 +224,7 @@ namespace ListAndLoopsExample
             return this.companies[selected - 1];
         }
 
-        //public Coffee DeleteCoffee()
-        //{
-        //    return coffee;
-        //}
+     
         public void DeleteCoffeeList()
         {
             

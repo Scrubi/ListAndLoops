@@ -114,21 +114,21 @@ namespace ListAndLoopsExample
                                     Console.WriteLine("Valitse Kahvi joka poistetaan listasta (rivinumero):");
                                     dataHandler.PrintCoffeeList();
                                     var coffeeremove = int.Parse(Console.ReadLine());
-                                    dh.coffees.RemoveAt(coffeeremove);
+                                    dataHandler.coffees.RemoveAt(coffeeremove - 1);
                                     Console.ReadKey();
                                     break;
                                 case "2":
                                     Console.WriteLine("Valitse Yhteyshenkilö joka poistetaan listasta (rivinumero):");
                                     dataHandler.PrintPersonList();
                                     var personremove = int.Parse(Console.ReadLine());
-                                    dh.persons.RemoveAt(personremove);
+                                    dataHandler.persons.RemoveAt(personremove - 1);
                                     Console.ReadKey();
                                     break;
                                 case "3":
                                     Console.WriteLine("Valitse Valmistaja joka poistetaan listasta (rivinumero):");
                                     dataHandler.PrintCompanyList();
                                     var companyremove = int.Parse(Console.ReadLine());
-                                    dh.companies.RemoveAt(companyremove);
+                                    dataHandler.companies.RemoveAt(companyremove - 1);
                                     Console.ReadKey();
                                     break;
                             }
