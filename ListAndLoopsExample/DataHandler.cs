@@ -35,8 +35,8 @@ namespace ListAndLoopsExample
             string paahto = Console.ReadLine();
             int paahtoaste = int.Parse(paahto);
             var roast = (Coffee.Roast)paahtoaste;
-            Coffee toReturn = new Coffee(merkki, hinta);
-            return toReturn;
+            Coffee coffee = new Coffee(merkki, hinta, roast);
+            return coffee;
            
 
         }
@@ -63,6 +63,19 @@ namespace ListAndLoopsExample
             Console.WriteLine("Henkilö Lisätty listaan");
         }
 
+        public void AddNewCoffeeToList()
+        {
+            Coffee coffee = CreateCoffee();
+            this.coffees.Add(coffee);
+            Console.WriteLine("Kahvi lisätty listaan");
+        }
+        public void PrintCoffeeList()
+        {
+            for (int i = 0; i < this.coffees.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {this.coffees[i].brand} {this.coffees[i].price} {this.coffees[i].roast}");
+            }
+        }
         public void PrintPersonList()
         {
             for (int i = 0; i < this.persons.Count; i++)
