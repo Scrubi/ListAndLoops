@@ -31,11 +31,11 @@ namespace ListAndLoopsExample
         {
 
             Console.Clear();
-            Console.WriteLine("Choose an option:");
+            Console.WriteLine("Main Menu");
             Console.WriteLine("1) Lisää Kahvi");
             Console.WriteLine("2) Lisää Yhteyshenkilö");
             Console.WriteLine("3) Lisää Valmistaja");
-            Console.WriteLine("4) Hae Lista Kahveista, Yhteyshenkilöista tai Valmistajista (ei toimi vielä täysin)");
+            Console.WriteLine("4) Hae Lista Kahveista, Yhteyshenkilöista tai Valmistajista");
             Console.WriteLine("5) Poista Lista tai Yksittäinen merkintä Kahveista, Yhteyshenkilöistä tai Valmistajista (ei toimi vielä)");
             Console.WriteLine("6) Poistu Ohjelmasta");
             Console.Write("\r\nChoose an option: ");
@@ -61,7 +61,7 @@ namespace ListAndLoopsExample
                     break;
                 case "4":
                     Console.Clear();
-                    Console.WriteLine("Choose an option:");
+                    Console.WriteLine("Valitse:");
                     Console.WriteLine("1) Hae Lista Kahveista");
                     Console.WriteLine("2) Hae Lista Yhteyshenkilöistä");
                     Console.WriteLine("3) Hae Lista Valmistajista");
@@ -82,7 +82,59 @@ namespace ListAndLoopsExample
                     }
                     break;
                 case "5":
-                    return false;
+                    Console.Clear();
+                    Console.WriteLine("Valitse:");
+                    Console.WriteLine("1) Poista Koko Lista Kahveista");
+                    Console.WriteLine("2) Poista Koko Lista Yhteyshenkilöistä");
+                    Console.WriteLine("3) Poista Koko Lista Valmistajista");
+                    Console.WriteLine("4) Poista Yksittäinen Kahvi, Yhteyshenkilö tai Valmistaja");
+                    switch (Console.ReadLine())
+                    {
+                        case "1":
+                            dataHandler.DeleteCoffeeList();
+                            Console.ReadKey();
+                            break;
+                        case "2":
+                            dataHandler.DeletePersonList();
+                            Console.ReadKey();
+                            break;
+                        case "3":
+                            dataHandler.DeleteCompanyList();
+                            Console.ReadKey();
+                            break;
+                        case "4":
+                            Console.Clear();
+                            Console.WriteLine("Valitse:");
+                            Console.WriteLine("1) Poista Yksittäinen Kahvi Listasta");
+                            Console.WriteLine("2) Poista Yksittäinen Yhteyshenkilö Listasta");
+                            Console.WriteLine("3) Poista Yksittäinen Valmistaja Listasta");
+                            switch (Console.ReadLine())
+                            {
+                                case "1":
+                                    Console.WriteLine("Valitse Kahvi joka poistetaan listasta (rivinumero):");
+                                    dataHandler.PrintCoffeeList();
+                                    var coffeeremove = int.Parse(Console.ReadLine());
+                                    dh.coffees.RemoveAt(coffeeremove);
+                                    Console.ReadKey();
+                                    break;
+                                case "2":
+                                    Console.WriteLine("Valitse Yhteyshenkilö joka poistetaan listasta (rivinumero):");
+                                    dataHandler.PrintPersonList();
+                                    var personremove = int.Parse(Console.ReadLine());
+                                    dh.persons.RemoveAt(personremove);
+                                    Console.ReadKey();
+                                    break;
+                                case "3":
+                                    Console.WriteLine("Valitse Valmistaja joka poistetaan listasta (rivinumero):");
+                                    dataHandler.PrintCompanyList();
+                                    var companyremove = int.Parse(Console.ReadLine());
+                                    dh.companies.RemoveAt(companyremove);
+                                    Console.ReadKey();
+                                    break;
+                            }
+                                    break;
+                    }
+                    break;
                 case "6":
                     Console.WriteLine("Poistuit Ohjelmasta!");
                     return false;

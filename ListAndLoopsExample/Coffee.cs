@@ -16,7 +16,7 @@ namespace ListAndLoopsExample
         public string brand;        
         public double price;        
         public Roast roast;
-        //public string importer;
+        public Company importer;
         public Coffee(string merkki)
         {
 
@@ -27,12 +27,12 @@ namespace ListAndLoopsExample
             this.brand = brand;
         }
 
-        public Coffee(string brand, double price, Roast roast)//, string importer)
+        public Coffee(string brand, double price, Roast roast, Company importer)
         {
             this.brand = brand;
             this.price = price;
             this.roast = roast;
-            //this.importer = importer;
+            this.importer = importer;
         }
     }
 }

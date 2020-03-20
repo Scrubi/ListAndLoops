@@ -18,12 +18,12 @@ namespace ListAndLoopsExample
 
                 MainMenu mm = new MainMenu(dh);
                 mm.InitializeMainMenu();
-
-    }
+            
+        }
 
         
 
-        }
+    }
 
 
     }
